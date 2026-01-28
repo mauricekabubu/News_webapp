@@ -1,0 +1,69 @@
+{% extends "base.html"%}
+
+{% block title %}
+News web App
+{% endblock %}
+
+{% block body %}
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><i class="fa-solid fa-fire"></i>Hot News</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="\?query=latest"><i class="fa-solid fa-house"></i>Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="\?query=Kenya"><i class="fa-solid fa-earth-africa"></i>Kenya</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="\?query=World"><i class="fa-solid fa-earth-europe"></i>World</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="\?query=health"><i class="fa-solid fa-viruses"></i>Health</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="\?query=technology"><i class="fa-solid fa-microchip"></i>Technology</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="\?query=finance"><i class="fa-solid fa-coins"></i>Finance</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="\?query=sports"><i class="fa-solid fa-volleyball"></i>Sports</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="\?query=Entertainment"><i class="fa-solid fa-video"></i>Entertainment</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="\?query=Education"><i class="fa-solid fa-user-graduate"></i>Education</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <h2 class="news">Welcome to Hot news platform</h2>
+    <form class="d-flex" role="search">
+        <input class="form-control" type="text" name="query" value="{{query}}" placeholder="Search for news here..." aria-label="Search"/>
+        <button class="btn btn-outline-success" type="submit">Search</button>
+    </form>
+    <div class="rows">
+        {% for article in articles %}
+        <div class="column">
+            <div class="card">
+                {% if article.urlToImage %}
+                <img src="{{article.urlToImage}}" alt="picture" class="card-img">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title"><a href="{{article.url}}" target="_blank">{{article.title}}</a></h5>
+                    <p class="card-text">{{article.description}}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
